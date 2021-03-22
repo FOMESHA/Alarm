@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Animator))]
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
@@ -10,7 +9,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject _pathContainer;
 
     private Rigidbody2D _rigidbody2D;
-    private Animator _animator;
+    
     private Waypoint[] _waypoints;
     private Queue<Waypoint> _path = new Queue<Waypoint>();
     private Waypoint _currentWaypoint;
@@ -31,13 +30,6 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
-    }
-
-
-    private void Update()
-    {
-        _animator.SetFloat("Speed", Mathf.Abs(_rigidbody2D.velocity.x));
     }
 
     private void FixedUpdate()
